@@ -1,0 +1,51 @@
+.grid
+    display: flex
+    flex-wrap: wrap
+
+.card
+    flex: 1 0 50%
+    max-width: 50%
+    padding: 12px
+    @media (min-width: 768px)
+        flex: 1 0 25%
+        max-width: 25%
+    @media (min-width: 1200px)
+        flex: 1 0 12.5%
+        max-width: 12.5%
+
+    &__inner
+        border-radius: 12px
+        cursor: pointer
+        box-shadow: -4px -4px 8px $neo-white,4px 4px 8px $neo-black
+        border: 1px solid $neo-white
+        perspective: 500px
+        transition: all .2s ease-in-out
+        &:hover
+            box-shadow: 0px 24px 18px -8px rgba(0, 0, 0, .6)
+            transform: translate3d(0, -10px, 0)
+            background: $neo-white
+            .card__img
+                transform: rotateY(180deg)
+
+
+
+    &__img
+        position: relative
+        transform-style: preserve-3d
+        transition: all .2s ease-in-out
+        height: 100px
+
+        &-item
+            backface-visibility: hidden
+            width: 100%
+            height: 100%
+
+            &.back
+                position: absolute
+                
+            &.front
+                position: absolute
+                transform: rotateY(180deg)
+    
+    &__title
+        text-align: center
