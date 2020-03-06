@@ -400,6 +400,96 @@ input {
                 transform: rotateY(180deg); }
   .card__title {
     text-align: center; }
+  .card__details {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    overflow-y: auto; }
+  .card__modal {
+    padding: 50px 20px; }
+
+.modal {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  background: #fff;
+  padding: 0 0 50px 0; }
+  .modal__header {
+    height: 60px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding: 0 20px;
+    background: #f1f1f1; }
+  .modal__title {
+    font-size: 1.2rem;
+    text-transform: uppercase; }
+  .modal__close {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background: red; }
+  .modal__content {
+    padding: 16px 20px 0; }
+
+.details__row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+  .details__row:not(:last-child) {
+    margin-bottom: 12px; }
+
+.details__img {
+  width: 300px; }
+
+.details__info {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1; }
+
+.details__block-title {
+  font-size: 1.1rem;
+  margin-bottom: 8px; }
+
+.details__block-inner--flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap; }
+
+.details__block-item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 10px; }
+  .details__block-item-key {
+    margin-right: 10px; }
+  .details__block-item-value {
+    background: #f1f1f1;
+    padding: 5px 8px;
+    border-radius: 3px; }
+
+.details__block-tag {
+  margin-right: 8px;
+  margin-bottom: 8px;
+  padding: 5px 10px;
+  background: #f1f1f1; }
 
 * {
   margin: 0;

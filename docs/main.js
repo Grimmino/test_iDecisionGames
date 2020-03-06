@@ -19345,77 +19345,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "App", function() { return App; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+/* harmony import */ var _pokedex_Pokedex_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./pokedex/Pokedex.jsx */ "./components/pokedex/Pokedex.jsx");
 
 
 var MAIN_URL = 'https://pokeapi.co/api/v2/';
-var POKEMONS_SPRITES__BACK = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back';
-var POKEMONS_SPRITES__FRONT = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
-var SHOW = 12;
-var POKEMONS = "pokemon?limit=".concat(SHOW);
 var App = function App(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
-      _useState2 = _slicedToArray(_useState, 2),
-      isLoad = _useState2[0],
-      setIsLoad = _useState2[1];
-
-  var getPokemonList =
-  /*#__PURE__*/
-  function () {
-    var _ref = _asyncToGenerator(
-    /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee() {
-      var pokemonsList;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return fetch("".concat(MAIN_URL).concat(POKEMONS)).then(function (res) {
-                return res.json();
-              }).then(function (data) {
-                return data;
-              })["catch"](function (err) {
-                return console.log(err);
-              });
-
-            case 2:
-              pokemonsList = _context.sent;
-              sessionStorage.setItem('pokemons', JSON.stringify(pokemonsList));
-              setIsLoad(true);
-
-            case 5:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee);
-    }));
-
-    return function getPokemonList() {
-      return _ref.apply(this, arguments);
-    };
-  }();
-
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    if (sessionStorage.getItem('pokemons') == null) {
-      console.log('get pokemons list');
-      getPokemonList();
-    } else {
-      setIsLoad(true);
-    }
-  });
-
   var clearSessionStorage = function clearSessionStorage() {
     sessionStorage.removeItem('pokemons');
   };
@@ -19434,31 +19368,293 @@ var App = function App(props) {
     placeholder: "\u0432\u0432\u0435\u0434\u0438\u0442\u0435 \u043A\u043E\u043B-\u0432\u043E \u0441\u0442\u0440\u0430\u043D\u0438\u0446"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "btn viewer__btn"
-  }, "\u043F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pokemons"
-  }, isLoad ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PokemonsList, null) : null));
+  }, "\u043F\u0440\u0438\u043C\u0435\u043D\u0438\u0442\u044C"))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_pokedex_Pokedex_jsx__WEBPACK_IMPORTED_MODULE_1__["Pokedex"], null));
 };
 
-var PokemonsList = function PokemonsList(props) {
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(JSON.parse(sessionStorage.getItem('pokemons'))),
-      _useState4 = _slicedToArray(_useState3, 2),
-      pokemonsList = _useState4[0],
-      setPokemonsList = _useState4[1]; //console.log(pokemonsList)
+/***/ }),
 
+/***/ "./components/pokedex/Details.jsx":
+/*!****************************************!*\
+  !*** ./components/pokedex/Details.jsx ***!
+  \****************************************/
+/*! exports provided: Modal */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Modal", function() { return Modal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+var Modal = function Modal(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      info = _useState2[0],
+      setInfo = _useState2[1];
+
+  var getPokemonInfo =
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee() {
+      var pokemonInfo;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return fetch("https://pokeapi.co/api/v2/pokemon/".concat(props.item.name, "/")).then(function (res) {
+                return res.json();
+              }).then(function (data) {
+                return data;
+              })["catch"](function (err) {
+                return console.log(err);
+              });
+
+            case 2:
+              pokemonInfo = _context.sent;
+              setInfo(pokemonInfo);
+
+            case 4:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getPokemonInfo() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    if (Object.keys(info).length == 0) {
+      getPokemonInfo();
+    }
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card__details"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card__modal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__header"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__title"
+  }, props.item.name), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: props.toggleInfo,
+    className: "modal__close"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal__content"
+  }, Object.keys(info).length !== 0 ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Details, {
+    info: info
+  }) : null))));
+};
+
+var Details = function Details(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__img"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: props.info.sprites.front_default,
+    alt: ""
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__info"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "details__block-title"
+  }, "abilities"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block-inner details__block-inner--flex"
+  }, props.info.abilities.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details__block-tag",
+      key: index
+    }, item.ability.name);
+  }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
+    className: "details__block-title"
+  }, "stats"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block-inner"
+  }, props.info.stats.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details__block-item",
+      key: index
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details__block-item-key"
+    }, item.stat.name, ":"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details__block-item-value"
+    }, item.base_stat));
+  }))))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__row"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "details__block-inner details__block-inner--flex"
+  }, props.info.moves.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      className: "details__block-tag",
+      key: index
+    }, item.move.name);
+  })))));
+};
+
+/***/ }),
+
+/***/ "./components/pokedex/Pokedex.jsx":
+/*!****************************************!*\
+  !*** ./components/pokedex/Pokedex.jsx ***!
+  \****************************************/
+/*! exports provided: Pokedex */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Pokedex", function() { return Pokedex; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _PokemonsList_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PokemonsList.jsx */ "./components/pokedex/PokemonsList.jsx");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var MAIN_URL = 'https://pokeapi.co/api/v2/';
+var Pokedex = function Pokedex(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      isLoad = _useState2[0],
+      setIsLoad = _useState2[1];
+
+  var getPokemonList =
+  /*#__PURE__*/
+  function () {
+    var _ref = _asyncToGenerator(
+    /*#__PURE__*/
+    regeneratorRuntime.mark(function _callee() {
+      var show,
+          POKEMONS,
+          pokemonsList,
+          _args = arguments;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              show = _args.length > 0 && _args[0] !== undefined ? _args[0] : 5;
+              POKEMONS = "pokemon?limit=".concat(show);
+              _context.next = 4;
+              return fetch("".concat(MAIN_URL).concat(POKEMONS)).then(function (res) {
+                return res.json();
+              }).then(function (data) {
+                return data;
+              })["catch"](function (err) {
+                return console.log(err);
+              });
+
+            case 4:
+              pokemonsList = _context.sent;
+              sessionStorage.setItem('pokemons', JSON.stringify(pokemonsList));
+              setIsLoad(true);
+
+            case 7:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getPokemonList() {
+      return _ref.apply(this, arguments);
+    };
+  }();
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    sessionStorage.getItem('pokemons') == null ? getPokemonList() : setIsLoad(true);
+  });
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pokemons"
+  }, isLoad ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_PokemonsList_jsx__WEBPACK_IMPORTED_MODULE_1__["PokemonsList"], null) : null);
+};
+
+/***/ }),
+
+/***/ "./components/pokedex/PokemonsList.jsx":
+/*!*********************************************!*\
+  !*** ./components/pokedex/PokemonsList.jsx ***!
+  \*********************************************/
+/*! exports provided: PokemonsList */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PokemonsList", function() { return PokemonsList; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "../node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Details_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Details.jsx */ "./components/pokedex/Details.jsx");
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
+
+function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+var POKEMONS_SPRITES__BACK = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back';
+var POKEMONS_SPRITES__FRONT = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
+var PokemonsList = function PokemonsList(props) {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(JSON.parse(sessionStorage.getItem('pokemons'))),
+      _useState2 = _slicedToArray(_useState, 2),
+      pokemonsList = _useState2[0],
+      setPokemonsList = _useState2[1];
 
   var nextPokemonsList =
   /*#__PURE__*/
   function () {
-    var _ref2 = _asyncToGenerator(
+    var _ref = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee2() {
+    regeneratorRuntime.mark(function _callee() {
       var store, next;
-      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context.prev = _context.next) {
             case 0:
               store = JSON.parse(sessionStorage.getItem('pokemons'));
-              _context2.next = 3;
+              _context.next = 3;
               return fetch(store.next).then(function (res) {
                 return res.json();
               }).then(function (data) {
@@ -19468,36 +19664,36 @@ var PokemonsList = function PokemonsList(props) {
               });
 
             case 3:
-              next = _context2.sent;
+              next = _context.sent;
               setPokemonsList(next);
               sessionStorage.setItem('pokemons', JSON.stringify(next));
 
             case 6:
             case "end":
-              return _context2.stop();
+              return _context.stop();
           }
         }
-      }, _callee2);
+      }, _callee);
     }));
 
     return function nextPokemonsList() {
-      return _ref2.apply(this, arguments);
+      return _ref.apply(this, arguments);
     };
   }();
 
   var prevPokemonsList =
   /*#__PURE__*/
   function () {
-    var _ref3 = _asyncToGenerator(
+    var _ref2 = _asyncToGenerator(
     /*#__PURE__*/
-    regeneratorRuntime.mark(function _callee3() {
+    regeneratorRuntime.mark(function _callee2() {
       var store, previous;
-      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
-          switch (_context3.prev = _context3.next) {
+          switch (_context2.prev = _context2.next) {
             case 0:
               store = JSON.parse(sessionStorage.getItem('pokemons'));
-              _context3.next = 3;
+              _context2.next = 3;
               return fetch(store.previous).then(function (res) {
                 return res.json();
               }).then(function (data) {
@@ -19507,22 +19703,44 @@ var PokemonsList = function PokemonsList(props) {
               });
 
             case 3:
-              previous = _context3.sent;
+              previous = _context2.sent;
               setPokemonsList(previous);
               sessionStorage.setItem('pokemons', JSON.stringify(previous));
 
             case 6:
             case "end":
-              return _context3.stop();
+              return _context2.stop();
           }
         }
-      }, _callee3);
+      }, _callee2);
     }));
 
     return function prevPokemonsList() {
-      return _ref3.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "pokemons__list grid"
+  }, pokemonsList.results.map(function (item, index) {
+    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(PokemonInfo, {
+      key: index,
+      item: item
+    });
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn",
+    onClick: pokemonsList.previous !== null ? prevPokemonsList : null
+  }, "prev"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn",
+    onClick: pokemonsList.next !== null ? nextPokemonsList : null
+  }, "next"));
+};
+
+var PokemonInfo = function PokemonInfo(props) {
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      isShowDetails = _useState4[0],
+      setIsShowDetails = _useState4[1];
 
   var getImg = function getImg(url) {
     var reg = url.match(/\/\d+/i);
@@ -19539,26 +19757,23 @@ var PokemonsList = function PokemonsList(props) {
     })));
   };
 
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "pokemons__list grid"
-  }, pokemonsList.results.map(function (item, index) {
-    return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card",
-      key: index
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card__inner pokemons__item"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card__img"
-    }, getImg(item.url)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      className: "card__title"
-    }, item.name)));
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn",
-    onClick: pokemonsList.previous !== null ? prevPokemonsList : null
-  }, "prev"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    className: "btn",
-    onClick: pokemonsList.next !== null ? nextPokemonsList : null
-  }, "next"));
+  var toggleInfo = function toggleInfo() {
+    setIsShowDetails(!isShowDetails);
+  };
+
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    onClick: toggleInfo,
+    className: "card__inner pokemons__item"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card__img"
+  }, getImg(props.item.url)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "card__title"
+  }, props.item.name)), !isShowDetails || react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Details_jsx__WEBPACK_IMPORTED_MODULE_1__["Modal"], {
+    item: props.item,
+    toggleInfo: toggleInfo
+  }));
 };
 
 /***/ }),

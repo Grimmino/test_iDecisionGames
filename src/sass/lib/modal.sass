@@ -1,0 +1,75 @@
+.modal
+   width: 100%
+   max-width: 1400px
+   margin: 0 auto
+   background: $neo-white
+   padding: 0 0 50px 0
+
+   &__header
+      height: 60px
+      display: flex
+      justify-content: space-between
+      align-items: center
+      padding: 0 20px
+      background: #f1f1f1
+   
+   &__title
+      font-size: 1.2rem
+      text-transform: uppercase
+   
+   &__close
+      cursor: pointer
+      width: 30px
+      height: 30px
+      background: red
+   
+   &__content
+      padding: 16px 20px 0
+
+
+
+.details
+
+   &__row
+      display: flex
+      flex-wrap: wrap
+      &:not(:last-child)
+         margin-bottom: 12px
+
+   &__img
+      width: 300px
+
+   &__info
+      flex: 1
+
+
+   &__block
+
+      &-title
+         font-size: 1.1rem
+         margin-bottom: 8px
+
+      &-inner
+
+         &--flex
+            display: flex
+            flex-wrap: wrap
+
+      &-item
+         display: flex
+         align-items: center
+         margin-bottom: 10px
+
+         &-key
+            margin-right: 10px
+         
+         &-value
+            background: #f1f1f1
+            padding: 5px 8px
+            border-radius: 3px
+
+      &-tag
+         margin-right: 8px
+         margin-bottom: 8px
+         padding: 5px 10px
+         background: #f1f1f1
