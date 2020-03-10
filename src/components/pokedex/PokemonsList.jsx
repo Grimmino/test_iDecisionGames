@@ -1,69 +1,43 @@
 import React, { useEffect, useState } from 'react';
 import { Modal } from './Details.jsx';
 
-const POKEMONS_SPRITES__BACK = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/back';
-const POKEMONS_SPRITES__FRONT = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon';
-
 export const PokemonsList = props => {
-	const [pokemonsList, setPokemonsList] = useState(JSON.parse(sessionStorage.getItem('pokemons')));
+	const [pokemons, setPokemons] = useState([]);
 
-	const nextPokemonsList = async () => {
-		const store = JSON.parse(sessionStorage.getItem('pokemons'));
+	// const filterByMark = type => {
+	// 	const tempArr = [];
 
-		const next = await fetch(store.next)
-			.then(res => res.json())
-			.then(data => data)
-			.catch(err => console.log(err));
+	// 	pokemons.forEach(item => {
+	// 		item.types.filter(item => item.type.name == type).length != 0 ? tempArr.push(item) : null;
+	// 	});
 
-		setPokemonsList(next);
-
-		sessionStorage.setItem('pokemons', JSON.stringify(next));
-	};
-
-	const prevPokemonsList = async () => {
-		const store = JSON.parse(sessionStorage.getItem('pokemons'));
-
-		const previous = await fetch(store.previous)
-			.then(res => res.json())
-			.then(data => data)
-			.catch(err => console.log(err));
-
-		setPokemonsList(previous);
-
-		sessionStorage.setItem('pokemons', JSON.stringify(previous));
-	};
+	// 	setPokemons(tempArr);
+	// };
+	useEffect(() => {
+		setPokemons(props.pokemons);
+	}, [props.pokemons]);
 
 	return (
-		<React.Fragment>
-			<div className='pokemons__list grid'>
-				{pokemonsList.results.map((item, index) => (
-					<PokemonInfo key={index} item={item} />
-				))}
-			</div>
-
-			<button className='btn' onClick={pokemonsList.previous !== null ? prevPokemonsList : null}>
-				prev
-			</button>
-			<button className='btn' onClick={pokemonsList.next !== null ? nextPokemonsList : null}>
-				next
-			</button>
-		</React.Fragment>
+		<div className='pokemons__list grid'>
+			{pokemons.map((item, index) => (
+				<PokemonInfo filterByMark={props.filterByMark} key={index} pokemon={item} />
+			))}
+		</div>
 	);
 };
 
 const PokemonInfo = props => {
 	const [isShowDetails, setIsShowDetails] = useState(false);
 
-	const getImg = url => {
-		const reg = url.match(/\/\d+/i);
+	const getImg = () => {
 		return (
 			<React.Fragment>
 				<div className='card__img-item front'>
-					<img src={`${POKEMONS_SPRITES__FRONT}${reg[0]}.png`} alt='' />
+					<img src={`${props.pokemon.sprites.front_default}`} alt='' />
 				</div>
 
 				<div className='card__img-item back'>
-					<img src={`${POKEMONS_SPRITES__BACK}${reg[0]}.png`} alt='' />
+					<img src={`${props.pokemon.sprites.back_default}`} alt='' />
 				</div>
 			</React.Fragment>
 		);
@@ -75,12 +49,26 @@ const PokemonInfo = props => {
 
 	return (
 		<div className='card'>
-			<div onClick={toggleInfo} className='card__inner pokemons__item'>
-				<div className='card__img'>{getImg(props.item.url)}</div>
-				<div className='card__title'>{props.item.name}</div>
+			<div className='card__inner pokemons__item'>
+				<div className='card__marks'>
+					{props.pokemon.types.map((mark, index) => (
+						<div
+							title={mark.type.name}
+							onClick={() => props.filterByMark({ type: mark.type.name })}
+							className={`card__mark card__mark-${mark.type.name}`}
+							key={index}
+						></div>
+					))}
+				</div>
+				<div onClick={toggleInfo} className='card__img'>
+					{getImg()}
+				</div>
+				<div onClick={toggleInfo} className='card__title'>
+					{props.pokemon.name}
+				</div>
 			</div>
 
-			{!isShowDetails || <Modal item={props.item} toggleInfo={toggleInfo} />}
+			{!isShowDetails || <Modal pokemon={props.pokemon} toggleInfo={toggleInfo} />}
 		</div>
 	);
 };

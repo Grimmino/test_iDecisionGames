@@ -4,24 +4,30 @@ import { PokemonsList } from './PokemonsList.jsx';
 const MAIN_URL = 'https://pokeapi.co/api/v2/';
 
 export const Pokedex = props => {
+	const [pokemonsList, setPokemonsList] = useState([]);
 	const [isLoad, setIsLoad] = useState(false);
 
-	const getPokemonList = async (show = 5) => {
-		const POKEMONS = `pokemon?limit=${show}`;
+	const getPokemonList = async () => {
+		console.log(props.show);
 
-		const pokemonsList = await fetch(`${MAIN_URL}${POKEMONS}`)
-			.then(res => res.json())
-			.then(data => data)
-			.catch(err => console.log(err));
+		const arrPokemons = [];
 
-		sessionStorage.setItem('pokemons', JSON.stringify(pokemonsList));
+		for (let i = 0; i < props.show; i++) {
+			const nextPokemon = `${MAIN_URL}pokemon/${i + 1}/`;
 
-		setIsLoad(true);
+			const pokemonInfo = await fetch(`${nextPokemon}`)
+				.then(res => res.json())
+				.then(data => data)
+				.catch(err => console.log(err));
+
+			arrPokemons.push(pokemonInfo);
+		}
+		setPokemonsList(arrPokemons);
 	};
 
 	useEffect(() => {
-		sessionStorage.getItem('pokemons') == null ? getPokemonList() : setIsLoad(true);
+		pokemonsList.length == 0 ? getPokemonList() : setIsLoad(true);
 	});
 
-	return <div className='pokemons'>{isLoad ? <PokemonsList /> : null}</div>;
+	return <div className='pokemons'>{!isLoad || <PokemonsList pokemons={pokemonsList} />}</div>;
 };

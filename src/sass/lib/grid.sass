@@ -1,17 +1,12 @@
 .grid
     display: flex
     flex-wrap: wrap
+    justify-content: center
 
 .card
-    flex: 1 0 50%
-    max-width: 50%
+    flex: 1 0 224px
+    max-width: 224px
     padding: 12px
-    @media (min-width: 768px)
-        flex: 1 0 25%
-        max-width: 25%
-    @media (min-width: 1200px)
-        flex: 1 0 12.5%
-        max-width: 12.5%
 
     &__inner
         border-radius: 12px
@@ -20,6 +15,11 @@
         border: 1px solid $neo-white
         perspective: 500px
         transition: all .2s ease-in-out
+        height: 200px
+        max-width: 200px
+        margin: 0 auto
+        display: flex
+        flex-direction: column
         &:hover
             box-shadow: 0px 24px 18px -8px rgba(0, 0, 0, .6)
             transform: translate3d(0, -10px, 0)
@@ -27,13 +27,64 @@
             .card__img
                 transform: rotateY(180deg)
 
+    &__marks
+        position: absolute
+        right: 10px
+        top: 10px
+        display: flex
+        z-index: 2
+    
+    &__mark
+        background: #0000ff
+        width: 16px
+        height: 16px
+        border-radius: 50%
+        &:not(:last-child)
+            margin-right: 5px
 
+        &-poison
+            background: #00ff4c
+        &-grass
+            background: #009b2e
+        &-fire
+            background: #fc6500
+        &-flying
+            background: #a8e6ff
+        &-water
+            background: #0085b9
+        &-bug
+            background: #0f4608
+        &-normal
+            background: #ffcda3
+        &-electric
+            background: #f8e800
+        &-ground
+            background: #493510
+        &-fairy
+            background: #ff008c
+        &-fighting
+            background: #ff0000
+        &-psychic
+            background: #6919d3
+        &-rock
+            background: #b4b3b3
+        &-steel
+            background: #757474
+        &-ice
+            background: #5dcefa
+        &-ghost
+            background: #ac6bf7
+        &-dragon
+            background: #2a3b2b
+        &-dark
+            background: #000000
+        
 
     &__img
+        flex: 1
         position: relative
         transform-style: preserve-3d
         transition: all .2s ease-in-out
-        height: 100px
 
         &-item
             backface-visibility: hidden
@@ -49,6 +100,7 @@
     
     &__title
         text-align: center
+        padding: 20px 0
 
     &__details
         position: fixed

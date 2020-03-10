@@ -1,33 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 export const Modal = props => {
-	const [info, setInfo] = useState({});
-
-	const getPokemonInfo = async () => {
-		const pokemonInfo = await fetch(`https://pokeapi.co/api/v2/pokemon/${props.item.name}/`)
-			.then(res => res.json())
-			.then(data => data)
-			.catch(err => console.log(err));
-
-		setInfo(pokemonInfo);
-	};
-
-	useEffect(() => {
-		if (Object.keys(info).length == 0) {
-			getPokemonInfo();
-		}
-	});
-
 	return (
 		<div className='card__details'>
 			<div className='card__modal'>
 				<div className='modal'>
 					<div className='modal__header'>
-						<div className='modal__title'>{props.item.name}</div>
+						<div className='modal__title'>{props.pokemon.name}</div>
 						<div onClick={props.toggleInfo} className='modal__close'></div>
 					</div>
 
-					<div className='modal__content'>{Object.keys(info).length !== 0 ? <Details info={info} /> : null}</div>
+					<div className='modal__content'>
+						<Details info={props.pokemon} />
+					</div>
 				</div>
 			</div>
 		</div>
