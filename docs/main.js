@@ -19369,10 +19369,15 @@ var App = function App(props) {
       pokemonsList = _useState2[0],
       setPokemonsList = _useState2[1];
 
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(2),
       _useState4 = _slicedToArray(_useState3, 2),
-      isLoad = _useState4[0],
-      setIsLoad = _useState4[1];
+      showCount = _useState4[0],
+      setShowCount = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState6 = _slicedToArray(_useState5, 2),
+      isLoad = _useState6[0],
+      setIsLoad = _useState6[1];
 
   var getPokemonList =
   /*#__PURE__*/
@@ -19386,21 +19391,20 @@ var App = function App(props) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _ref2$show = _ref2.show, show = _ref2$show === void 0 ? 8 : _ref2$show, _ref2$type = _ref2.type, type = _ref2$type === void 0 ? '' : _ref2$type;
-              console.log(show, type);
+              _ref2$show = _ref2.show, show = _ref2$show === void 0 ? showCount : _ref2$show, _ref2$type = _ref2.type, type = _ref2$type === void 0 ? '' : _ref2$type;
               arrPokemons = [];
               j = 1;
               i = 0;
 
-            case 5:
+            case 4:
               if (!(i < show)) {
-                _context.next = 16;
+                _context.next = 14;
                 break;
               }
 
               nextPokemon = "".concat(MAIN_URL, "pokemon/").concat(j, "/");
               j++;
-              _context.next = 10;
+              _context.next = 9;
               return fetch("".concat(nextPokemon)).then(function (res) {
                 return res.json();
               }).then(function (data) {
@@ -19409,33 +19413,30 @@ var App = function App(props) {
                 return console.log(err);
               });
 
-            case 10:
+            case 9:
               pokemonInfo = _context.sent;
 
-              if (type != '' && pokemonInfo.types.filter(function (item) {
-                return item.type.name == type;
-              }).length != 0) {
-                console.log(pokemonInfo.name);
-                arrPokemons.push(pokemonInfo);
-              } else if (type != '' && pokemonInfo.types.filter(function (item) {
-                return item.type.name == type;
-              }).length == 0) {
-                i--;
-              }
-
-              if (type == '') {
+              if (type != '') {
+                if (pokemonInfo.types.filter(function (item) {
+                  return item.type.name == type;
+                }).length != 0) {
+                  arrPokemons.push(pokemonInfo);
+                } else {
+                  i--;
+                }
+              } else {
                 arrPokemons.push(pokemonInfo);
               }
 
-            case 13:
+            case 11:
               i++;
-              _context.next = 5;
+              _context.next = 4;
               break;
 
-            case 16:
+            case 14:
               setPokemonsList(arrPokemons);
 
-            case 17:
+            case 15:
             case "end":
               return _context.stop();
           }
@@ -19453,6 +19454,7 @@ var App = function App(props) {
   });
 
   var getPokemonsLength = function getPokemonsLength() {
+    setShowCount(inputEl.current.value);
     inputEl.current.value != '' ? getPokemonList({
       show: inputEl.current.value
     }) : null;
@@ -19599,14 +19601,7 @@ var PokemonsList = function PokemonsList(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       pokemons = _useState2[0],
-      setPokemons = _useState2[1]; // const filterByMark = type => {
-  // 	const tempArr = [];
-  // 	pokemons.forEach(item => {
-  // 		item.types.filter(item => item.type.name == type).length != 0 ? tempArr.push(item) : null;
-  // 	});
-  // 	setPokemons(tempArr);
-  // };
-
+      setPokemons = _useState2[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     setPokemons(props.pokemons);

@@ -4,15 +4,6 @@ import { Modal } from './Details.jsx';
 export const PokemonsList = props => {
 	const [pokemons, setPokemons] = useState([]);
 
-	// const filterByMark = type => {
-	// 	const tempArr = [];
-
-	// 	pokemons.forEach(item => {
-	// 		item.types.filter(item => item.type.name == type).length != 0 ? tempArr.push(item) : null;
-	// 	});
-
-	// 	setPokemons(tempArr);
-	// };
 	useEffect(() => {
 		setPokemons(props.pokemons);
 	}, [props.pokemons]);

@@ -596,3 +596,16 @@ body {
   .viewer__btn {
     border-radius: 0 8px 8px 0; }
 
+.pokemons {
+  padding: 20px 0; }
+  .pokemons__nav {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    margin: 0 0 24px 0; }
+  .pokemons__btn {
+    margin: 0 20px; }
+

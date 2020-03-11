@@ -7,11 +7,10 @@ export const App = props => {
 	const inputEl = useRef();
 
 	const [pokemonsList, setPokemonsList] = useState([]);
+	const [showCount, setShowCount] = useState(2);
 	const [isLoad, setIsLoad] = useState(false);
 
-	const getPokemonList = async ({ show = 8, type = '' }) => {
-		console.log(show, type);
-
+	const getPokemonList = async ({ show = showCount, type = '' }) => {
 		const arrPokemons = [];
 		let j = 1;
 		for (let i = 0; i < show; i++) {
@@ -23,14 +22,13 @@ export const App = props => {
 				.then(data => data)
 				.catch(err => console.log(err));
 
-			if (type != '' && pokemonInfo.types.filter(item => item.type.name == type).length != 0) {
-				console.log(pokemonInfo.name);
-				arrPokemons.push(pokemonInfo);
-			} else if (type != '' && pokemonInfo.types.filter(item => item.type.name == type).length == 0) {
-				i--;
-			}
-
-			if (type == '') {
+			if (type != '') {
+				if (pokemonInfo.types.filter(item => item.type.name == type).length != 0) {
+					arrPokemons.push(pokemonInfo);
+				} else {
+					i--;
+				}
+			} else {
 				arrPokemons.push(pokemonInfo);
 			}
 		}
@@ -42,6 +40,7 @@ export const App = props => {
 	});
 
 	const getPokemonsLength = () => {
+		setShowCount(inputEl.current.value);
 		inputEl.current.value != '' ? getPokemonList({ show: inputEl.current.value }) : null;
 	};
 
